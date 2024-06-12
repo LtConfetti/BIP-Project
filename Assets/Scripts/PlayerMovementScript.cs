@@ -15,13 +15,18 @@ public class PlayerMovementScript : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        moveInput.Normalize();
+        //moveInput.Normalize();
 
         Rigidbody.velocity = new Vector3(moveInput.x * movementSpeed, Rigidbody.velocity.y, moveInput.y * movementSpeed);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
