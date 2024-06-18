@@ -255,7 +255,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &75691646
@@ -401,7 +401,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &615157872
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 615157874}
   - component: {fileID: 615157873}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Scene Transition Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01df92d05295448baa735fb9df66e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: Main
+  level: World Fitness
 --- !u!65 &615157874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -516,12 +516,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615157872}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.775, y: 16.236, z: -42.417}
-  m_LocalScale: {x: 2.5439, y: 3.3749, z: 0.068568}
+  m_LocalRotation: {x: -0, y: 0.7660445, z: -0, w: 0.64278764}
+  m_LocalPosition: {x: 1.6075921, y: 2.4800003, z: 0.042925052}
+  m_LocalScale: {x: 3.6341422, y: 4.821286, z: 0.09795426}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1705362835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &734149580
 GameObject:
@@ -648,7 +648,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e47ee6b94afb9f479bf85fb6437ac91, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 615157877}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: 4e47ee6b94afb9f479bf85fb6437ac91, type: 3}
       insertIndex: -1
@@ -1308,6 +1311,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1456905578}
   m_SourcePrefab: {fileID: 100100000, guid: 4e47ee6b94afb9f479bf85fb6437ac91, type: 3}
+--- !u!4 &1705362835 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e47ee6b94afb9f479bf85fb6437ac91, type: 3}
+  m_PrefabInstance: {fileID: 818982935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1807825278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,5 +1647,4 @@ SceneRoots:
   - {fileID: 818982935}
   - {fileID: 1450875378}
   - {fileID: 1676750011}
-  - {fileID: 615157877}
   - {fileID: 1231901965}
