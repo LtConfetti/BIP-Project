@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Transform attackHitbox;
+    public int playerHealth = 3;
     public KeyCode attackKey = KeyCode.Space;
     public float attackRange = 1.0f;
     public LayerMask enemyLayers;
@@ -41,5 +42,17 @@ public class PlayerCombat : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackHitbox.position, attackRange);
     }
-
+    public void TakeDamage(int damage)
+    {
+        playerHealth -= damage;
+        Debug.Log("Took damage");
+        if (playerHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        Debug.Log("Out of lives");
+    }
 }

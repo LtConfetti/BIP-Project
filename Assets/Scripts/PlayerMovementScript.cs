@@ -4,31 +4,43 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    public CharacterController characterController;
     public Rigidbody Rigidbody;
+    public float gravity = -9.81f;
     public float movementSpeed = 1;
 
     private bool isFacingRight = true; //Character starts facing right, this is a bool to make sure it IS facing right when D is pressed
 
-    private Vector2 moveInput;
+    private Vector2 moveInput; 
+    private Vector3 velocity;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (characterController == null)
+        {
+            characterController = GetComponent<CharacterController>();
+        }
 
     }
 
     private void FixedUpdate()
     {
+        isGrounded = characterController.isGrounded;
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        //moveInput.Normalize();
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        characterController.Move(move * movementSpeed * Time.deltaTime);
 
-        Rigidbody.velocity = new Vector3(moveInput.x * movementSpeed, Rigidbody.velocity.y, moveInput.y * movementSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
         FlipSprite();
     }
 

@@ -6,7 +6,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public int maxHealth = 2;
     private int currentHealth;
-
+    public int damage = 1;
     void Start()
     {
         currentHealth = maxHealth;
@@ -23,5 +23,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Debug.Log("Enemy died");
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerCombat>().TakeDamage(damage);
+            
+        }
     }
 }
