@@ -30,5 +30,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _GridColour: {r: 0, g: 256, b: 0, a: 0}
+    - _GridColour: {r: 0, g: 191.74904, b: 0, a: 0}
   m_BuildTextureStacks: []
