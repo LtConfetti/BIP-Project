@@ -22,8 +22,8 @@ public class BridgePuzzle : MonoBehaviour
         // Initialize array and load materials from Resources
         changedState = new Material[2];
 
-        changedState[0] = Resources.Load<Material>("Green");
-        changedState[1] = Resources.Load<Material>("Red");
+        changedState[0] = Resources.Load<Material>("Materials/Green");
+        changedState[1] = Resources.Load<Material>("Materials/Red");
 
         // Store the original material of the object
         originalMaterial = GetComponent<Renderer>().material;

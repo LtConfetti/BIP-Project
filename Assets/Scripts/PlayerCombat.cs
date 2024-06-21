@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 1.0f;
     public LayerMask enemyLayers;
     public int attackDamage = 1;
+
+    public Image[] healthImages;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,7 @@ public class PlayerCombat : MonoBehaviour
     {
         playerHealth -= damage;
         Debug.Log("Took damage");
+        UpdateHealthUI();
         if (playerHealth <= 0)
         {
             Die();
@@ -56,5 +59,20 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         Debug.Log("Out of lives");
+    }
+
+    void UpdateHealthUI()
+    {
+        for (int i = 0; i < healthImages.Length; i++)
+        {
+            if (i < playerHealth)
+            {
+                healthImages[i].enabled = true;
+            }
+            else
+            {
+                healthImages[i].enabled = false;
+            }
+        }
     }
 }
