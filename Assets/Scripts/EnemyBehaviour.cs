@@ -31,7 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerCombat>().TakeDamage(damage);
-            
         }
     }
+    
 }

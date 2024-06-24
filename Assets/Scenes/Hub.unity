@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questManager: {fileID: 422867395}
-  maxHealth: 2
+  maxHealth: 4
   damage: 1
 --- !u!136 &1894856583
 CapsuleCollider:
@@ -2351,7 +2351,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7928474
+  m_Radius: 1
   m_Height: 2.0468643
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
