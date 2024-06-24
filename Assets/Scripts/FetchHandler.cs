@@ -2,30 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCQuests : MonoBehaviour
+public class FetchHandler : MonoBehaviour
 {
-    public GameObject objectToHideShow;
+
     private bool playerInRange;
     public QuestManager questManager;
-    public int questID;
-    public string questType;
-    private void Start()
-    {
-
-    }
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (questManager.quests[questID] || questManager.questCompleted)
-            {
-                questManager.CompleteQuest();
-            }
-            else
-            {
-                questManager.StartQuest(questID, questType);
-            }
+            CollectObject();
         }
     }
 
@@ -43,5 +30,12 @@ public class NPCQuests : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    private void CollectObject()
+    {
+        //questManager.ObjectCollected();
+        gameObject.SetActive(false); // Make the object invisible
+        Debug.Log("Object collected and made invisible.");
     }
 }

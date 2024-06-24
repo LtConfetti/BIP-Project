@@ -12889,9 +12889,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
+      propertyPath: questType
+      value: Kill
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
       propertyPath: questManager
       value: 
       objectReference: {fileID: 1958458087}
+    - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
+      propertyPath: questType.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
+      propertyPath: 'questType.Array.data[0]'
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
+      propertyPath: 'questType.Array.data[1]'
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794093535438998371, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
+      propertyPath: 'questType.Array.data[2]'
+      value: 108
+      objectReference: {fileID: 0}
     - target: {fileID: 4125091554736862213, guid: b2cb6ea7fafccb14d94e112ebf3a8160, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.796216
@@ -25938,6 +25958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questCompleted: 0
   quests: 0000000000000000
+  fetchObj: {fileID: 0}
 --- !u!4 &1958458088
 Transform:
   m_ObjectHideFlags: 0

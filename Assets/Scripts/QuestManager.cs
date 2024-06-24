@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -10,16 +11,25 @@ public class QuestManager : MonoBehaviour
     public bool questCompleted;
     private int currentQuestID = -1;
     public bool[] quests = new bool[8];
+    public FetchHandler fetchObj;
 
-    public void StartQuest(int questID)
+    public void StartQuest(int questID, string questType)
     {
         if (!quests[questID] && !questActive)
         {
             questActive = true;
-            enemiesKilled = 0;
-            currentQuestID = questID;
-            questCompleted = false;
-            Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
+            if (questType == "kill")
+            {
+                Kill(questID);
+            }
+            else if (questType == "fetch")
+            {
+                Fetch(questID);
+            }
+            else if (questType == "fetchkill")
+            {
+                FetchKill(questID);
+            }
         }
         else if (quests[questID])
         {
@@ -30,6 +40,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("You are already on a quest. Complete it first.");
         }
     }
+    
 
     public void EnemyKilled()
     {
@@ -45,6 +56,27 @@ public class QuestManager : MonoBehaviour
                 Debug.Log($"Quest {currentQuestID} requirements met. Return to NPC to complete.");
             }
         }
+    }
+
+    public void Fetch(int questID)
+    {
+
+    }
+
+    public void Kill(int questID)
+    {
+        enemiesKilled = 0;
+        currentQuestID = questID;
+        questCompleted = false;
+        Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
+    }
+    public void FetchKill(int questID)
+    {
+        enemiesKilled = 0;
+        currentQuestID = questID;
+        questCompleted = false;
+        Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
+
     }
 
     public void CompleteQuest()
