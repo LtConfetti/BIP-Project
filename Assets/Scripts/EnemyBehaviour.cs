@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public QuestManager questManager;
     public int maxHealth = 2;
     private int currentHealth;
     public int damage = 1;
@@ -23,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Debug.Log("Enemy died");
         Destroy(gameObject);
+        questManager.EnemyKilled();
     }
     private void OnTriggerEnter(Collider other)
     {
