@@ -15,6 +15,8 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,10 @@ public class PlayerMovementScript : MonoBehaviour
         {
             characterController = GetComponent<CharacterController>();
         }
-
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     private void FixedUpdate()
@@ -42,6 +47,8 @@ public class PlayerMovementScript : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
         FlipSprite();
+
+        animator.SetBool("IsWalking", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
     }
 
     private void Flip()
