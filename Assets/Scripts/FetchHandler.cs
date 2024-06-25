@@ -34,7 +34,7 @@ public class FetchHandler : MonoBehaviour
 
     private void CollectObject()
     {
-        //questManager.ObjectCollected();
+        questManager.ObjectCollected();
         gameObject.SetActive(false); // Make the object invisible
         Debug.Log("Object collected and made invisible.");
     }
