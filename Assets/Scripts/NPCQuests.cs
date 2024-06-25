@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class NPCQuests : MonoBehaviour
 {
-    public GameObject objectToHideShow;
+
     private bool playerInRange;
     public QuestManager questManager;
-    public int questID;
-    public string questType;
-    private void Start()
-    {
-
-    }
+    public int questID; // ID of the quest this NPC starts
+    public QuestManager.QuestType questType; // Type of the quest
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (questManager.quests[questID] || questManager.questCompleted)
+            if (questManager.questCompleted)
             {
                 questManager.CompleteQuest();
             }
-            else
+            else if (!questManager.questActive)
             {
                 questManager.StartQuest(questID, questType);
             }

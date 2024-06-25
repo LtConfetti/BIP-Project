@@ -5,46 +5,69 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private int enemiesKilled;
-    private int requiredKills = 2;
-    private bool questActive;
-    public bool questCompleted;
-    private int currentQuestID = -1;
-    public bool[] quests = new bool[8];
-    public FetchHandler fetchObj;
-
-    public void StartQuest(int questID, string questType)
+    public enum QuestType
     {
-        if (!quests[questID] && !questActive)
+        Kill,
+        Fetch,
+        KillFetch
+    }
+    public bool questActive;
+    public bool questCompleted;
+    public int currentQuestID = -1;
+    public QuestType currentQuestType;
+    public bool[] quests = new bool[8];
+
+    private int enemiesKilled;
+    public int requiredKills = 2;
+
+    private int objectsCollected;
+    public int requiredFetches = 1;
+    public GameObject[] fetchableObjects;
+
+    public void StartQuest(int questID, QuestType questType)
+    {
+        if (!quests[questID])
         {
             questActive = true;
-            if (questType == "kill")
+            questCompleted = false;
+            currentQuestID = questID;
+            currentQuestType = questType;
+
+            if (questType == QuestType.Kill)
             {
-                Kill(questID);
+                enemiesKilled = 0;
+                Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
             }
-            else if (questType == "fetch")
+            else if (questType == QuestType.Fetch)
             {
-                Fetch(questID);
+                objectsCollected = 0;
+                foreach (GameObject obj in fetchableObjects)
+                {
+                    obj.SetActive(true);
+                }
+                Debug.Log($"Quest {questID} started: Collect {requiredFetches} items.");
             }
-            else if (questType == "fetchkill")
+            else if (questType == QuestType.KillFetch)
             {
-                FetchKill(questID);
+                enemiesKilled = 0;
+                Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
+                objectsCollected = 0;
+                foreach (GameObject obj in fetchableObjects)
+                {
+                    obj.SetActive(true);
+                }
+                Debug.Log($"Quest {questID} started: Collect {requiredFetches} items.");
             }
-        }
-        else if (quests[questID])
-        {
-            Debug.Log($"Quest {questID} already completed.");
         }
         else
         {
-            Debug.Log("You are already on a quest. Complete it first.");
+            Debug.Log($"Quest {questID} already completed.");
         }
     }
-    
 
     public void EnemyKilled()
     {
-        if (questActive)
+        if (questActive && currentQuestType == QuestType.Kill)
         {
             enemiesKilled++;
             Debug.Log("Enemy killed. Total kills: " + enemiesKilled);
@@ -58,32 +81,27 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void Fetch(int questID)
+    public void ObjectCollected()
     {
+        if (questActive && currentQuestType == QuestType.Fetch)
+        {
+            objectsCollected++;
+            Debug.Log("Object collected. Total collected: " + objectsCollected);
 
-    }
-
-    public void Kill(int questID)
-    {
-        enemiesKilled = 0;
-        currentQuestID = questID;
-        questCompleted = false;
-        Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
-    }
-    public void FetchKill(int questID)
-    {
-        enemiesKilled = 0;
-        currentQuestID = questID;
-        questCompleted = false;
-        Debug.Log($"Quest {questID} started: Kill {requiredKills} enemies.");
-
+            if (objectsCollected >= requiredFetches)
+            {
+                questActive = false;
+                questCompleted = true;
+                Debug.Log($"Quest {currentQuestID} requirements met. Return to NPC to complete.");
+            }
+        }
     }
 
     public void CompleteQuest()
     {
         if (questCompleted && !quests[currentQuestID])
         {
-            quests[currentQuestID] = true;
+            quests[currentQuestID] = true; // Mark the quest as completed
             questCompleted = false;
             Debug.Log($"Quest {currentQuestID} completed successfully.");
         }
