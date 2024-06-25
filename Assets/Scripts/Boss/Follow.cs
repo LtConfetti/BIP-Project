@@ -48,16 +48,9 @@ public class Follow : MonoBehaviour
 
     private void FollowPlayer()
     {
-        // Get the current position
-        Vector3 currentPosition = transform.position;
+        MoveTowardsPlayer();
 
-        // Get the player position but keep the current y value
-        Vector3 targetPosition = new Vector3(player.position.x, currentPosition.y, player.position.z);
-
-        // Move towards the player position in the x and z axes only
-        transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
-
-        // Spawn projectiles if not already attacking
+        // Attack if in range
         if (!firstRingAlreadyAttacked)
         {
             SpawnProjectileRing(firstRingProjectileSpeed, firstRingProjectileRadius);
@@ -75,10 +68,9 @@ public class Follow : MonoBehaviour
 
     private void AttackPlayer()
     {
-        // Ensure the enemy doesn't move
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        LookAtPlayer();
 
-        // Spawn projectiles if not already attacking
+        // Attack if in range
         if (!firstRingAlreadyAttacked)
         {
             SpawnProjectileRing(firstRingProjectileSpeed, firstRingProjectileRadius);
@@ -93,6 +85,25 @@ public class Follow : MonoBehaviour
             Invoke(nameof(ResetSecondRingAttack), secondRingTimeBetweenAttacks);
         }
     }
+
+    private void MoveTowardsPlayer()
+    {
+        // Get the current position
+        Vector3 currentPosition = transform.position;
+
+        // Get the player position but keep the current y value
+        Vector3 targetPosition = new Vector3(player.position.x, currentPosition.y, player.position.z);
+
+        // Move towards the player position in the x and z axes only
+        transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
+    }
+
+    private void LookAtPlayer()
+    {
+        // Ensure the enemy looks at the player without rotating on the y-axis
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+    }
+
 
     private void SpawnProjectileRing(float projectileSpeed, float projectileRadius)
     {
