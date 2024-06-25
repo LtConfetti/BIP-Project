@@ -10,13 +10,14 @@ public class Follow : MonoBehaviour
 
     // Attacking
     public float attackRange = 2.0f; // Range within which the enemy can attack
-    public GameObject projectilePrefab;
 
-    // Projectile parameters
+    // Projectile prefabs
+    public GameObject firstRingProjectilePrefab;
     public float firstRingProjectileSpeed = 5f;
     public float firstRingProjectileRadius = 3f;
     public float firstRingTimeBetweenAttacks = 1.0f;
 
+    public GameObject secondRingProjectilePrefab;
     public float secondRingProjectileSpeed = 3f;
     public float secondRingProjectileRadius = 5f;
     public float secondRingTimeBetweenAttacks = 2.0f;
@@ -30,6 +31,14 @@ public class Follow : MonoBehaviour
     // Attack flags
     private bool firstRingAlreadyAttacked;
     private bool secondRingAlreadyAttacked;
+
+    // Initial rotation
+    private Quaternion initialRotation;
+
+    void Start()
+    {
+        initialRotation = transform.rotation;
+    }
 
     // Update is called once per frame
     void Update()
@@ -48,46 +57,6 @@ public class Follow : MonoBehaviour
 
     private void FollowPlayer()
     {
-        MoveTowardsPlayer();
-
-        // Attack if in range
-        if (!firstRingAlreadyAttacked)
-        {
-            SpawnProjectileRing(firstRingProjectileSpeed, firstRingProjectileRadius);
-            firstRingAlreadyAttacked = true;
-            Invoke(nameof(ResetFirstRingAttack), firstRingTimeBetweenAttacks);
-        }
-
-        if (!secondRingAlreadyAttacked)
-        {
-            SpawnProjectileRing(secondRingProjectileSpeed, secondRingProjectileRadius);
-            secondRingAlreadyAttacked = true;
-            Invoke(nameof(ResetSecondRingAttack), secondRingTimeBetweenAttacks);
-        }
-    }
-
-    private void AttackPlayer()
-    {
-        LookAtPlayer();
-
-        // Attack if in range
-        if (!firstRingAlreadyAttacked)
-        {
-            SpawnProjectileRing(firstRingProjectileSpeed, firstRingProjectileRadius);
-            firstRingAlreadyAttacked = true;
-            Invoke(nameof(ResetFirstRingAttack), firstRingTimeBetweenAttacks);
-        }
-
-        if (!secondRingAlreadyAttacked)
-        {
-            SpawnProjectileRing(secondRingProjectileSpeed, secondRingProjectileRadius);
-            secondRingAlreadyAttacked = true;
-            Invoke(nameof(ResetSecondRingAttack), secondRingTimeBetweenAttacks);
-        }
-    }
-
-    private void MoveTowardsPlayer()
-    {
         // Get the current position
         Vector3 currentPosition = transform.position;
 
@@ -96,16 +65,48 @@ public class Follow : MonoBehaviour
 
         // Move towards the player position in the x and z axes only
         transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
+
+        // Spawn projectiles if not already attacking
+        if (!firstRingAlreadyAttacked)
+        {
+            SpawnProjectileRing(firstRingProjectilePrefab, firstRingProjectileSpeed, firstRingProjectileRadius);
+            firstRingAlreadyAttacked = true;
+            Invoke(nameof(ResetFirstRingAttack), firstRingTimeBetweenAttacks);
+        }
+
+        if (!secondRingAlreadyAttacked)
+        {
+            SpawnProjectileRing(secondRingProjectilePrefab, secondRingProjectileSpeed, secondRingProjectileRadius);
+            secondRingAlreadyAttacked = true;
+            Invoke(nameof(ResetSecondRingAttack), secondRingTimeBetweenAttacks);
+        }
+
+        // Maintain initial rotation
+        transform.rotation = initialRotation;
     }
 
-    private void LookAtPlayer()
+    private void AttackPlayer()
     {
-        // Ensure the enemy looks at the player without rotating on the y-axis
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        // Spawn projectiles if not already attacking
+        if (!firstRingAlreadyAttacked)
+        {
+            SpawnProjectileRing(firstRingProjectilePrefab, firstRingProjectileSpeed, firstRingProjectileRadius);
+            firstRingAlreadyAttacked = true;
+            Invoke(nameof(ResetFirstRingAttack), firstRingTimeBetweenAttacks);
+        }
+
+        if (!secondRingAlreadyAttacked)
+        {
+            SpawnProjectileRing(secondRingProjectilePrefab, secondRingProjectileSpeed, secondRingProjectileRadius);
+            secondRingAlreadyAttacked = true;
+            Invoke(nameof(ResetSecondRingAttack), secondRingTimeBetweenAttacks);
+        }
+
+        // Maintain initial rotation
+        transform.rotation = initialRotation;
     }
 
-
-    private void SpawnProjectileRing(float projectileSpeed, float projectileRadius)
+    private void SpawnProjectileRing(GameObject projectilePrefab, float projectileSpeed, float projectileRadius)
     {
         GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, Quaternion.identity);
         projectile.GetComponent<Projectile>().Initialize(transform, projectileSpeed, projectileRadius);
