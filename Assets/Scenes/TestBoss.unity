@@ -794,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611256074492315883, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.465725
+      value: -8.61
       objectReference: {fileID: 0}
     - target: {fileID: 2611256074492315883, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: m_LocalPosition.y
@@ -843,23 +843,23 @@ PrefabInstance:
     - target: {fileID: 5428819023723795551, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: 'healthImages.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 284039450}
     - target: {fileID: 5428819023723795551, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: 'healthImages.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1839804013}
     - target: {fileID: 5428819023723795551, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: 'healthImages.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 426082342}
     - target: {fileID: 5428819023723795551, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: 'healthImages.Array.data[3]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7158438}
     - target: {fileID: 5428819023723795551, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: 'healthImages.Array.data[4]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1018699864}
     - target: {fileID: 5816301008790404848, guid: 76b0f11a966549e4494db664f6e5d942, type: 3}
       propertyPath: m_Radius
       value: 3.5
@@ -1281,16 +1281,16 @@ MonoBehaviour:
   followRadius: 10
   attackRange: 2
   firstRingProjectilePrefab: {fileID: 4626458322039687480, guid: e94f736cf5f361644916c7d2888b248c, type: 3}
-  firstRingProjectileSpeed: 5
-  firstRingProjectileRadius: 3
-  firstRingTimeBetweenAttacks: 1
+  firstRingProjectileSpeed: 2
+  firstRingProjectileRadius: 9
+  firstRingTimeBetweenAttacks: 5
   secondRingProjectilePrefab: {fileID: 1563413555685065914, guid: c4bfa6e72a10d1848a1bd354c8ba456b, type: 3}
-  secondRingProjectileSpeed: 3
-  secondRingProjectileRadius: 5
-  secondRingTimeBetweenAttacks: 2
+  secondRingProjectileSpeed: 1
+  secondRingProjectileRadius: 4
+  secondRingTimeBetweenAttacks: 5
   playerInSightRange: 0
   playerInAttackRange: 0
-  health: 10
+  health: 100
 --- !u!136 &1083934677
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   questManager: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 50
   damage: 1
   movementSpeed: 1
   PlayerInBox: 0
