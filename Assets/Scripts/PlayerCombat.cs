@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 1.0f;
     public LayerMask enemyLayers;
     public int attackDamage = 1;
+    public float dmgIFrame = 1.0f;
+    public bool isInvincible = false;
 
     public Image[] healthImages;
     // Start is called before the first frame update
@@ -45,6 +48,7 @@ public class PlayerCombat : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
         playerHealth -= damage;
         Debug.Log("Took damage");
         UpdateHealthUI();
@@ -52,6 +56,7 @@ public class PlayerCombat : MonoBehaviour
         {
             Die();
         }
+        IFrame();
     }
     void Die()
     {
@@ -72,4 +77,23 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+    void IFrame()
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(BecomeTemporarilyInvincible());
+        }
+
+    }
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        Debug.Log("Player turned invincible!");
+        isInvincible = true;
+
+        yield return new WaitForSeconds(dmgIFrame);
+
+        isInvincible = false;
+        Debug.Log("Player is no longer invincible!");
+    }
+
 }
