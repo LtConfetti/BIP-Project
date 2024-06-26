@@ -317,6 +317,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1322555760176140749, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358172599465185043, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253892262337425266, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
+      propertyPath: transitionTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3593560522916500297, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
       propertyPath: m_Name
       value: LevelLoader
@@ -325,6 +337,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 5fd3bdd98281c6e42b9b832a2f69d86a, type: 2}
+    - target: {fileID: 7833542628714394546, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8968810645580560410, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.77506
