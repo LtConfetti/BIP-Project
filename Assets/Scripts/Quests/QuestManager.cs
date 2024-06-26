@@ -25,14 +25,14 @@ public class QuestManager : MonoBehaviour
     public int requiredFetches = 1;
     public GameObject[] fetchableObjects;
 
+    // TextMeshProUGUI elements
     public TextMeshProUGUI questDescriptionText;
     public TextMeshProUGUI questStatusText;
-    public GameObject completedQuestsPanel;
-    public GameObject completedQuestTextPrefab;
+    public TextMeshProUGUI completedQuestsText;
 
     private void Start()
     {
-        UpdateUI();
+        UpdateCompletedQuestsUI();
     }
 
     public void StartQuest(int questID, QuestType questType)
@@ -71,12 +71,13 @@ public class QuestManager : MonoBehaviour
                 questDescription = $"Kill {requiredKills} enemies and collect {requiredFetches} items.";
             }
 
-            questDescriptionText.text = $"Quest {questID}: {questDescription}";
+            questDescriptionText.text = $"{questDescription}";
             questStatusText.text = "In Progress";
-            Debug.Log($"Quest {questID} started: {questDescription}");
+            //Debug.Log($"Quest {questID} started: {questDescription}");
         }
         else
         {
+            questStatusText.text = "Quest already completed";
             Debug.Log($"Quest {questID} already completed.");
         }
     }
@@ -86,7 +87,7 @@ public class QuestManager : MonoBehaviour
         if (questActive && (currentQuestType == QuestType.Kill || currentQuestType == QuestType.KillFetch))
         {
             enemiesKilled++;
-            Debug.Log("Enemy killed. Total kills: " + enemiesKilled);
+            //Debug.Log("Enemy killed. Total kills: " + enemiesKilled);
 
             if (enemiesKilled >= requiredKills)
             {
@@ -100,7 +101,7 @@ public class QuestManager : MonoBehaviour
         if (questActive && (currentQuestType == QuestType.Fetch || currentQuestType == QuestType.KillFetch))
         {
             objectsCollected++;
-            Debug.Log("Object collected. Total collected: " + objectsCollected);
+            //Debug.Log("Object collected. Total collected: " + objectsCollected);
 
             if (objectsCollected >= requiredFetches)
             {
@@ -118,7 +119,7 @@ public class QuestManager : MonoBehaviour
             questActive = false;
             questCompleted = true;
             questStatusText.text = "Return to NPC to complete";
-            Debug.Log($"Quest {currentQuestID} requirements met. Return to NPC to complete.");
+            //Debug.Log($"Quest {currentQuestID} requirements met. Return to NPC to complete.");
         }
     }
 
@@ -129,47 +130,30 @@ public class QuestManager : MonoBehaviour
             quests[currentQuestID] = true; // Mark the quest as completed
             questCompleted = false;
 
-            // Add the quest to the completed quests UI
-            GameObject completedQuestText = Instantiate(completedQuestTextPrefab, completedQuestsPanel.transform);
-            completedQuestText.GetComponent<TextMeshProUGUI>().text = $"Quest {currentQuestID} completed";
-
             questDescriptionText.text = "";
             questStatusText.text = "";
-            Debug.Log($"Quest {currentQuestID} completed successfully.");
+            UpdateCompletedQuestsUI();
+            //Debug.Log($"Quest {currentQuestID} completed successfully.");
         }
         else if (quests[currentQuestID])
         {
             Debug.Log($"Quest {currentQuestID} has already been completed.");
+            questStatusText.text = "Quest already completed";
         }
         else
         {
             Debug.Log("You need to fulfill the quest requirements first.");
+            questStatusText.text = "You need to fulfill the quest requirements first";
         }
     }
 
-    private void UpdateUI()
+    private void UpdateCompletedQuestsUI()
     {
-        // Initialize or update the UI elements
-        if (!questActive)
+        int completedCount = 0;
+        foreach (bool quest in quests)
         {
-            questDescriptionText.text = "";
-            questStatusText.text = "";
+            if (quest) completedCount++;
         }
-
-        // Clear completed quests panel
-        foreach (Transform child in completedQuestsPanel.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Add completed quests to the UI
-        for (int i = 0; i < quests.Length; i++)
-        {
-            if (quests[i])
-            {
-                GameObject completedQuestText = Instantiate(completedQuestTextPrefab, completedQuestsPanel.transform);
-                completedQuestText.GetComponent<TextMeshProUGUI>().text = $"Quest {i} completed";
-            }
-        }
+        completedQuestsText.text = $"{completedCount}/{quests.Length} quests";
     }
 }
