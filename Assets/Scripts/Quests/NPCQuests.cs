@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static QuestManager;
 
 public class NPCQuests : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class NPCQuests : MonoBehaviour
     public QuestManager questManager;
     public int questID; // ID of the quest this NPC starts
     public QuestManager.QuestType questType; // Type of the quest
+    public GameObject enemies;
+    public GameObject[] fetches;
 
     void Update()
     {
@@ -21,6 +24,17 @@ public class NPCQuests : MonoBehaviour
             else if (!questManager.questActive)
             {
                 questManager.StartQuest(questID, questType);
+
+                if(questType == QuestType.Kill)
+                {
+                    Spawner(enemies);
+                }
+                else if(questType == QuestType.Fetch)
+                {
+                    Spawner(fetches[0]);
+                    Spawner(fetches[1]);
+                }
+               
             }
         }
     }
@@ -39,5 +53,9 @@ public class NPCQuests : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+    private void Spawner(GameObject thing)
+    {
+        thing.SetActive(true);
     }
 }

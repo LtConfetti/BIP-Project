@@ -1200,6 +1200,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: playerHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: healthImages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: 'healthImages.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1926479266}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: 'healthImages.Array.data[1]'
+      value: 
+      objectReference: {fileID: 881165283}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: 'healthImages.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1044238205}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: 'healthImages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1369629440}
+    - target: {fileID: 1846589414325629521, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
+      propertyPath: 'healthImages.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1569939579}
     - target: {fileID: 5206624048014663824, guid: 742c39f6dc167e343ba69a5f5f646ba4, type: 3}
       propertyPath: m_Name
       value: Player Final
