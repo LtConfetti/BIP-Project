@@ -12,6 +12,9 @@ public class TeleportInScene : MonoBehaviour
 
     public Animator transition;
 
+    public float transitionTime = 1f;
+    public bool needEnd = false;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) { }
@@ -24,11 +27,12 @@ public class TeleportInScene : MonoBehaviour
         transition.SetTrigger("Start");
         Debug.Log("Loading scene");
         Debug.Log("triger0");
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(transitionTime);
         Debug.Log("triger1");
         playerg.SetActive(false);
         player.position = destination.position;
         Debug.Log("triger2");
+        if(needEnd) transition.SetTrigger("End");
         playerg.SetActive(true);
     }
 }
