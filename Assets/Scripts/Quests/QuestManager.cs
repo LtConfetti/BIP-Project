@@ -68,10 +68,6 @@ public class QuestManager : MonoBehaviour
             {
                 enemiesKilled = 0;
                 objectsCollected = 0;
-                foreach (GameObject obj in fetchableObjects)
-                {
-                    obj.SetActive(true);
-                }
                 questDescription = $"Kill {requiredKills} enemies and collect {requiredFetches} items.";
             }
 
@@ -124,6 +120,7 @@ public class QuestManager : MonoBehaviour
             questCompleted = true;
             questStatusText.text = "Return to NPC to complete";
             //Debug.Log($"Quest {currentQuestID} requirements met. Return to NPC to complete.");
+            objectsCollected = 0;
         }
     }
 
@@ -133,7 +130,7 @@ public class QuestManager : MonoBehaviour
         {
             quests[currentQuestID] = true; // Mark the quest as completed
             questCompleted = false;
-
+            objectsCollected = 0;
             questDescriptionText.text = "";
             questStatusText.text = "";
             UpdateCompletedQuestsUI();

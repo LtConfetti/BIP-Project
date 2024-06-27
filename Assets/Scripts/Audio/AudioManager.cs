@@ -45,7 +45,10 @@ public class AudioManager : MonoBehaviour
         if (AudioSettings.dspTime > goalTime - 1)
         {
             PlayScheduledClip();
-
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SetCurrentClip(Boss);
+            }
         }
     }
     private void PlayScheduledClip()

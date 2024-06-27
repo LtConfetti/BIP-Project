@@ -632,6 +632,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5264910292164086037, guid: 55586920dd8ad82479f2ef1f74b72c23, type: 3}
+      propertyPath: BM2
+      value: 
+      objectReference: {fileID: 8300000, guid: ac1d028f35b871e4e90ec57db8e881c7, type: 3}
+    - target: {fileID: 5264910292164086037, guid: 55586920dd8ad82479f2ef1f74b72c23, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d0b72dcec79e94380693e0b257da57, type: 3}
+    - target: {fileID: 5264910292164086037, guid: 55586920dd8ad82479f2ef1f74b72c23, type: 3}
       propertyPath: goalTime
       value: 0
       objectReference: {fileID: 0}
