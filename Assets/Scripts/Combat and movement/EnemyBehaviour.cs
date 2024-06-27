@@ -34,7 +34,7 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("Boss died");
             OpenScene();
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
         questManager.EnemyKilled();
         
     }
