@@ -14,7 +14,12 @@ public class SceneTransitions : MonoBehaviour
     {
         
     }
-    
+
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         OpenScene();

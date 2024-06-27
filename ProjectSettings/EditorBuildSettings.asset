@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/World Social Health.unity
     guid: ab81e51d046fb4f43af6394a78e6992f
+  - enabled: 1
+    path: Assets/Scenes/TestBoss.unity
+    guid: 671e0e80b425b1147a19d3a6e79108c4
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

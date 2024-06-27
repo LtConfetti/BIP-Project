@@ -1,4 +1,7 @@
 using UnityEngine;
+using static System.TimeZoneInfo;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -10,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float movementSpeed = 1;
     private bool PlayerInRange = false;
     public bool PlayerInBox = false;
+    public Animator transition;
     void Start()
     {
         currentHealth = maxHealth;
@@ -25,8 +29,14 @@ public class EnemyBehaviour : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy died");
-        Destroy(gameObject);
+        if (CompareTag("Boss"))
+        {
+            Debug.Log("Boss died");
+            OpenScene();
+        }
+        //Destroy(gameObject);
         questManager.EnemyKilled();
+        
     }
     private void FixedUpdate()
     {
@@ -55,5 +65,18 @@ public class EnemyBehaviour : MonoBehaviour
         {
             PlayerInRange = false;
         }
+    }
+    public void OpenScene()
+    {
+        StartCoroutine(LoadScene());
+    }
+    IEnumerator LoadScene()
+    {
+        transition.SetTrigger("Start");
+        Debug.Log("Loading scene");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene("Main Menu");
     }
 }

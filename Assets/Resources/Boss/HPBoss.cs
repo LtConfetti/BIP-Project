@@ -25,8 +25,7 @@ public class HPBoss : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died");
-        Destroy(gameObject);
+        Debug.Log("Boss died");
     }
 
 
