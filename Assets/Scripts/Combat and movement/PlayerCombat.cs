@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
@@ -61,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         Debug.Log("Out of lives");
+        SceneManager.LoadScene("TestBoss");
     }
 
     void UpdateHealthUI()

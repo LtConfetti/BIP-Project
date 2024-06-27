@@ -32,8 +32,6 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI questStatusText;
     public TextMeshProUGUI completedQuestsText;
     public Image progress;
-    private float timer = 0f;
-    private float displayValue = 0f;
 
     private void Start()
     {
@@ -161,7 +159,7 @@ public class QuestManager : MonoBehaviour
             if (quest) completedCount++;
         }
 
-        completedQuestsText.text = $"{completedCount}/{quests.Length} signatures";
+        completedQuestsText.text = $"{completedCount}/{quests.Length} signature";
 
         // Start the coroutine to animate the progress bar
         StartCoroutine(AnimateProgress(completedCount));
