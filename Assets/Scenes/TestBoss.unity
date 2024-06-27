@@ -1965,7 +1965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 441649870}
   questManager: {fileID: 0}
-  maxHealth: 1
+  maxHealth: 50
   damage: 1
   movementSpeed: 1
   PlayerInBox: 0
