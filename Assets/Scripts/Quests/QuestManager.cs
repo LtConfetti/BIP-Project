@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class QuestManager : MonoBehaviour
 {
@@ -29,10 +31,14 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI questDescriptionText;
     public TextMeshProUGUI questStatusText;
     public TextMeshProUGUI completedQuestsText;
+    public Image progress;
+    private float timer = 0f;
+    private float displayValue = 0f;
 
     private void Start()
     {
         UpdateCompletedQuestsUI();
+        progress.fillAmount = 0.0f;
     }
 
     public void StartQuest(int questID, QuestType questType)
@@ -154,6 +160,27 @@ public class QuestManager : MonoBehaviour
         {
             if (quest) completedCount++;
         }
-        completedQuestsText.text = $"{completedCount}/{quests.Length} quests";
+
+        completedQuestsText.text = $"{completedCount}/{quests.Length} signatures";
+
+        // Start the coroutine to animate the progress bar
+        StartCoroutine(AnimateProgress(completedCount));
+    }
+
+    private IEnumerator AnimateProgress(int completedCount)
+    {
+        float targetFillAmount = completedCount * 0.125f;
+        float startFillAmount = progress.fillAmount;
+        float duration = 1.0f; // Duration of the animation
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            progress.fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, elapsed / duration);
+            yield return null;
+        }
+
+        progress.fillAmount = targetFillAmount;
     }
 }
