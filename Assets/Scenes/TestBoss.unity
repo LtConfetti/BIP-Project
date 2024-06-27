@@ -421,6 +421,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2358172599465185043, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c6387d76b08a663499b5042d7e76b157, type: 2}
     - target: {fileID: 3253892262337425266, guid: 56601a5603ffb5646a0f2e5ec8cadd91, type: 3}
       propertyPath: transition
       value: 
